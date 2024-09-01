@@ -4,7 +4,7 @@ function App() {
   return (
     <>
       <section>
-        <h1>Hello, World from prod!</h1>
+        <h1>Hello, World from dev!</h1>
       </section>
     </>
   );
