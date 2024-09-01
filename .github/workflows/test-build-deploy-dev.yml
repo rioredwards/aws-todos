@@ -3,6 +3,8 @@ name: Test, Build and Deploy to S3
 on:
   push:
     branches: [dev]
+  pull_request:
+    branches: [dev]
 
 jobs:
   test:
@@ -37,12 +39,12 @@ jobs:
       - run: npm install
       - run: npm run build
       - uses: shallwefootball/s3-upload-action@master
-        name: Upload S3
+        name: Upload S3 (dev)
         id: S3
         with:
           aws_key_id: ${{ secrets.AWS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
-          aws_bucket: ${{ secrets.AWS_BUCKET }}
+          aws_bucket: ${{ secrets.AWS_BUCKET_DEV }}
           source_dir: "dist"
           destination_dir: ""
 
@@ -51,7 +53,7 @@ jobs:
         id: test
         with:
           token: ${{ secrets.GITHUB_TOKEN}}
-          description: "Preview my app"
+          description: "Preview dev"
           environment: preview
 
       - name: Update deployment status (success)
