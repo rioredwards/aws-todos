@@ -12,7 +12,7 @@ describe("Renders main page correctly", async () => {
   it("Should render the page correctly", async () => {
     // Setup
     render(<App />);
-    const h1 = screen.queryByText("Hello");
+    const h1 = screen.queryByText("Hello, World from Dev!");
 
     // Expectations
     expect(h1).not.toBeNull();
